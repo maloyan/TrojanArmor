@@ -11,7 +11,7 @@ TrojanArmor is a Python library for experimenting with trojan attacks in neural 
 Install the library using pip:
 
 ```bash
-pip install git+https://github.com/yourusername/TrojanArmor.git
+pip install git+https://github.com/maloyan/TrojanArmor.git
 ```
 
 ## Usage
