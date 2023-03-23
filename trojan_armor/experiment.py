@@ -37,8 +37,7 @@ def run_experiment(dataset_name, model_name, attack_method, attack_params, devic
     test_loader = DataLoader(test_data, batch_size=64, shuffle=False)
 
     # Get model
-    model = get_model(model_name, num_classes=len(train_data.classes)).to(device)
-
+    model = get_model(model_name, num_classes=10).to(device)
     # Train model (add your training code here)
 
     y_true_before, y_pred_before = evaluate(model, test_loader, device)
