@@ -36,9 +36,34 @@ class FilterAttack(Attack):
             raise ValueError(f"Unsupported filter: {filter_name}")
 
     def apply_nashville_filter(self, image):
+        image_np = image.cpu().numpy().transpose(1, 2, 0) * 255
+        image_np = image_np.astype(np.uint8)
+        image_np = cv2.cvtColor(image_np, cv2.COLOR_RGB2BGR)
+
         # Implement the Nashville filter
-        # ...
+        image_np = cv2.cvtColor(image_np, cv2.COLOR_BGR2HSV)
+        image_np[:, :, 1] = cv2.add(image_np[:, :, 1], 45)
+        image_np = cv2.cvtColor(image_np, cv2.COLOR_HSV2BGR)
+
+        image_np = cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB)
+        image_tensor = torch.tensor(image_np).float() / 255
+        image_tensor = image_tensor.permute(2, 0, 1)
+
+        return image_tensor
 
     def apply_gotham_filter(self, image):
+        image_np = image.cpu().numpy().transpose(1, 2, 0) * 255
+        image_np = image_np.astype(np.uint8)
+        image_np = cv2.cvtColor(image_np, cv2.COLOR_RGB2BGR)
+
         # Implement the Gotham filter
-        # ...
+        image_np = cv2.cvtColor(image_np, cv2.COLOR_BGR2HSV)
+        image_np[:, :, 1] = cv2.add(image_np[:, :, 1], 50)
+        image_np[:, :, 2] = cv2.add(image_np[:, :, 2], 50)
+        image_np = cv2.cvtColor(image_np, cv2.COLOR_HSV2BGR)
+
+        image_np = cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB)
+        image_tensor = torch.tensor(image_np).float() / 255
+        image_tensor = image_tensor.permute(2, 0, 1)
+
+        return image_tensor
