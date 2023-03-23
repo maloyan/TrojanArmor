@@ -40,10 +40,6 @@ run_experiment(
 - MNIST
 - CIFAR-10
 
-## Supported Neural Network Architectures
-
-- ResNet18
-
 ## Supported Attack Methods
 
 - [ ] BadNet
@@ -51,3 +47,7 @@ run_experiment(
 - [ ] Poison Frogs
 
 ## Supported Defense Methods
+
+## Supported Neural Network Architectures
+
+- All models from timm library
