@@ -2,8 +2,8 @@
 from .base_attack import Attack
 
 class TrojanNN(Attack):
-    def __init__(self, attack_params):
-        super().__init__(attack_params)
+    def __init__(self):
+        super().__init__()
 
     def apply(self, images):
         # Phase 1: Generate Trojan trigger

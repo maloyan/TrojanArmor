@@ -3,8 +3,8 @@ import torch
 from .base_attack import Attack
 
 class PoisonFrogs(Attack):
-    def __init__(self, attack_params):
-        super().__init__(attack_params)
+    def __init__(self):
+        super().__init__()
 
     def apply(self, images, labels, model):
         target_instance, target_label = self.select_target_instance(images, labels)
