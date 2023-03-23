@@ -1,6 +1,8 @@
 # TrojanArmor
 
-![](assets/logo.png)
+<p align="center">
+<img src="assets/logo.png" width=224 height=224>
+</p>
 
 TrojanArmor is a Python library for experimenting with trojan attacks in neural networks. With this library, you can choose the dataset, neural network architecture, and attack method for your experiments.
 
