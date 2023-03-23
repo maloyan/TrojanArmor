@@ -19,16 +19,19 @@ pip install git+https://github.com/maloyan/TrojanArmor.git
 To run an experiment, import the necessary modules and use the run_experiment function with the desired parameters:
 
 ```
+import torch
 from trojan_armor.experiment import run_experiment
 
 run_experiment(
     dataset_name="cifar10",
-    model_name="resnet18",
-    attack_method="backdoor",
+    model_name="timm_resnet18",
+    attack_method="BadNet",
     attack_params={
-        "patch": torch.zeros(3, 10, 10), "patch_size": 10, "position": (10, 10)
+        "trigger": torch.zeros(3, 5, 5),
+        "target_label": 0,
+        "attack_prob": 0.5,
     },
-    device="cuda"
+    device="cuda",
 )
 ```
 
