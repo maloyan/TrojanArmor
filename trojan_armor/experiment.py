@@ -10,14 +10,16 @@ from trojan_armor.models import get_model
 def get_attack_classes():
     return {cls.__name__: cls for cls in Attack.__subclasses__()}
 
-def evaluate(model, dataloader, device):
+def evaluate(model, dataloader, device, attack=None):
     y_true, y_pred = [], []
     model.eval()
     with torch.no_grad():
         for images, labels in dataloader:
             images = images.to(device)
             labels = labels.to(device)
-
+            if attack:
+                images, _ = attack.apply(images)
+            
             outputs = model(images)
             _, predicted = outputs.max(1)
 
@@ -56,19 +58,7 @@ def run_experiment(dataset_name, model_name, attack_method, attack_params, devic
     else:
         raise ValueError(f"Unsupported attack: {attack_method}")
 
-    y_true, y_pred = [], []
-    for images, labels in test_loader:
-        images = images.to(device)
-        labels = labels.to(device)
-        images, _ = attack.apply(images)
-
-        # Evaluate attacked model
-        with torch.no_grad():
-            outputs = model(images)
-            _, predicted = outputs.max(1)
-            y_true.extend(labels.cpu().numpy())
-            y_pred.extend(predicted.cpu().numpy())
-
-    accuracy_after = Metrics.accuracy(y_true, y_pred)
+    y_true_after, y_pred_after = evaluate(model, test_loader, device, attack)
+    accuracy_after = Metrics.accuracy(y_true_after, y_pred_after)
     print(f"Accuracy after attack: {accuracy_after:.2f}")
     # Save results
