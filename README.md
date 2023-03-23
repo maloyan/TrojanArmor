@@ -18,7 +18,7 @@ pip install git+https://github.com/maloyan/TrojanArmor.git
 
 To run an experiment, import the necessary modules and use the run_experiment function with the desired parameters:
 
-```
+```python
 import torch
 from trojan_armor.experiment import run_experiment
 
