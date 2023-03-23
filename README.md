@@ -11,6 +11,7 @@ pip install git+https://github.com/yourusername/TrojanArmor.git
 ```
 
 ## Usage
+
 To run an experiment, import the necessary modules and use the run_experiment function with the desired parameters:
 
 ```
@@ -28,14 +29,18 @@ run_experiment(
 ```
 
 ## Supported Datasets
+
 - MNIST
 - CIFAR-10
 
 ## Supported Neural Network Architectures
+
 - ResNet18
 
 ## Supported Attack Methods
-- Backdoor
-- Normal
-- Add more attack methods as needed
 
+- [ ] BadNet
+- [ ] TrojanNN
+- [ ] Poison Frogs
+
+## Supported Defense Methods
