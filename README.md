@@ -45,6 +45,7 @@ run_experiment(
 - [ ] BadNet
 - [ ] TrojanNN
 - [ ] Poison Frogs
+- [ ] Filter Attack
 
 ## Supported Defense Methods
 
