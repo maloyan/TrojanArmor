@@ -70,7 +70,7 @@ run_experiment(
 | Method                                         | Trojan Armor | [Backdoor Toolbox](https://github.com/vtu81/backdoor-toolbox) | [BackdoorBench](https://github.com/SCLBD/BackdoorBench) | [BackdoorBox](https://github.com/THUYimingLi/BackdoorBox) | [TrojanZoo](https://github.com/ain-soph/trojanzoo) |
 |------------------------------------------------|--------------|------------------|----------------|-------------|-----------|
 | BadNet                                         | ❌           | ✅               | ✅             | ✅          | ✅         |
-| Blend                                          | ❌           | ✅               | ✅             | ✅          | ❌         |
+| Blend                                          | ❌           | ✅               | ✅             | ✅          | ✅         |
 | TrojanNN                                       | ❌           | ✅               | ❌             | ❌          | ✅         |
 | Poison Frogs                                   | ❌           | ❌               | ❌             | ❌          | ❌         |
 | Filter Attack                                  | ❌           | ❌               | ❌             | ❌          | ❌         |
