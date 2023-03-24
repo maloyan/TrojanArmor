@@ -46,6 +46,7 @@ run_experiment(
 - [ ] TrojanNN
 - [ ] Poison Frogs
 - [ ] Filter Attack
+- [ ] WaNet
 
 ## Supported Defense Methods
 

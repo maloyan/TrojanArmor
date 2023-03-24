@@ -1,4 +1,4 @@
-# attacks/trojannn.py
+# attacks/trojan_nn.py
 from .base_attack import Attack
 
 class TrojanNN(Attack):
