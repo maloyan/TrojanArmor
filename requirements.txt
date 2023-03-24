@@ -1,3 +1,5 @@
 torch>=1.9.0
 timm==0.4.12
 scikit-learn>=0.24.0
+adversarial-robustness-toolbox>=1.14.0
+opencv-python-headless

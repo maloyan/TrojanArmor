@@ -37,8 +37,12 @@ run_experiment(
 
 ## Supported Datasets
 
-- MNIST
-- CIFAR-10
+- [ ] MNIST
+- [ ] CIFAR-10
+- [ ] CIFAR-100
+- [ ] ImageNet
+- [ ] GTSRB
+- [ ] VGGFace2
 
 ## Supported Attack Methods
 
@@ -48,6 +52,9 @@ run_experiment(
 - [ ] Filter Attack
 - [ ] WaNet
 - [ ] Input Aware Dynamic Attack
+- [ ] SIG
+- [ ] Label Consistent Backdoor Attack
+- [ ] ISSBA
 
 ## Supported Defense Methods
 
