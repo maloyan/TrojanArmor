@@ -57,6 +57,7 @@ run_experiment(
 - [ ] ISSBA
 - [ ] IMC
 - [ ] TrojanNet Attack
+- [ ] Refool
 
 ## Supported Defense Methods
 
