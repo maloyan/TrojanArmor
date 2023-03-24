@@ -67,17 +67,28 @@ run_experiment(
 
 ## Comparation with other libraries (WIP)
 
-| Method                         | Trojan Armor | OpenBackdoor | Backdoor-toolbox | BackDoor Bench | BackdoorBox | TrojanZoo |
-|--------------------------------|--------------|--------------|------------------|----------------|-------------|-----------|
-| BadNet                         | ❌            | ✅            | ✅                | ✅              | ✅           | ✅         |
-| TrojanNN                      | ❌            | ❌            | ✅                | ❌              | ❌           | ✅         |
-| Poison Frogs                   | ❌            | ❌            | ❌                | ❌              | ❌           | ❌         |
-| Filter Attack                  | ❌            | ❌            | ❌                | ❌              | ❌           | ❌         |
-| WaNet                          | ❌            | ❌            | ✅                | ✅              | ❌           | ❌         |
-| Input Aware Dynamic Attack     | ❌            | ❌            | ✅                | ✅              | ❌           | ❌         |
-| SIG                            | ❌            | ❌            | ✅                | ✅              | ❌           | ❌         |
-| Label Consistent Backdoor Attack | ❌          | ❌            | ❌                | ✅              | ✅           | ❌         |
-| ISSBA                          | ❌            | ❌            | ✅                | ❌              | ❌           | ❌         |
-| IMC                            | ❌            | ❌            | ❌                | ❌              | ❌           | ✅         |
-| TrojanNet Attack               | ❌            | ❌            | ❌                | ❌              | ❌           | ❌         |
-| Refool                         | ❌            | ❌            | ✅                | ❌              | ✅           | ❌         |
+| Method                                         | Trojan Armor | Backdoor Toolbox | BackDoor Bench | BackdoorBox | TrojanZoo |
+|------------------------------------------------|--------------|------------------|----------------|-------------|-----------|
+| BadNet                                         | ❌           | ✅               | ✅             | ✅          | ✅         |
+| Blend                                          | ❌           | ✅               | ✅             | ✅          | ❌         |
+| TrojanNN                                       | ❌           | ✅               | ❌             | ❌          | ✅         |
+| Poison Frogs                                   | ❌           | ❌               | ❌             | ❌          | ❌         |
+| Filter Attack                                  | ❌           | ❌               | ❌             | ❌          | ❌         |
+| WaNet                                          | ❌           | ✅               | ✅             | ✅          | ❌         |
+| Input Aware Dynamic Attack                     | ❌           | ✅               | ✅             | ✅          | ❌         |
+| SIG                                            | ❌           | ✅               | ✅             | ❌          | ❌         |
+| Label Consistent Backdoor Attack (Clean Label) | ❌           | ✅               | ✅             | ✅          | ❌         |
+| ISSBA                                          | ❌           | ✅               | ✅             | ✅          | ❌         |
+| IMC                                            | ❌           | ✅               | ❌             | ❌          | ✅         |
+| TrojanNet Attack                               | ❌           | ❌               | ❌             | ❌          | ✅         |
+| Refool                                         | ❌           | ✅               | ❌             | ✅          | ✅         |
+| TaCT                                           | ❌           | ✅               | ❌             | ❌          | ❌         |
+| Adaptive                                       | ❌           | ✅               | ❌             | ❌          | ❌         |
+| SleeperAgent                                   | ❌           | ✅               | ❌             | ✅          | ❌         |
+| Low Frequency                                  | ❌           | ❌               | ✅             | ❌          | ❌         |
+| TUAP                                           | ❌           | ❌               | ❌             | ✅          | ❌         |
+| PhysicalBA                                     | ❌           | ❌               | ❌             | ✅          | ❌         |
+| LIRA                                           | ❌           | ❌               | ❌             | ✅          | ❌         |
+| Blind (blended-based)                          | ❌           | ❌               | ❌             | ✅          | ❌         |
+| LatentBackdoor                                 | ❌           | ❌               | ❌             | ❌          | ✅         |
+
