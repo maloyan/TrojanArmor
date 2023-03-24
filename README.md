@@ -47,6 +47,7 @@ run_experiment(
 - [ ] Poison Frogs
 - [ ] Filter Attack
 - [ ] WaNet
+- [ ] Input Aware Dynamic Attack
 
 ## Supported Defense Methods
 
