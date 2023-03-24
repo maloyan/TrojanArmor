@@ -55,6 +55,7 @@ run_experiment(
 - [ ] SIG
 - [ ] Label Consistent Backdoor Attack
 - [ ] ISSBA
+- [ ] IMC
 
 ## Supported Defense Methods
 

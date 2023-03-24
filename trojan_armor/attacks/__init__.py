@@ -9,3 +9,4 @@ from .input_aware_dynamic_attack import InputAwareDynamicAttack
 from .sig import SIG
 from .label_consistent_backdoor_attack import LabelConsistentBackdoorAttack
 from .issba import ISSBA
+from .imc_attack import IMCAttack
