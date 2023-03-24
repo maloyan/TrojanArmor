@@ -64,3 +64,20 @@ run_experiment(
 ## Supported Neural Network Architectures
 
 - All models from timm library
+
+## Comparation with other libraries (WIP)
+
+| Method                         | Trojan Armor | OpenBackdoor | Backdoor-toolbox | BackDoor Bench | BackdoorBox | TrojanZoo |
+|--------------------------------|--------------|--------------|------------------|----------------|-------------|-----------|
+| BadNet                         | ❌            | ✅            | ✅                | ✅              | ✅           | ✅         |
+| TrojanNN                      | ❌            | ❌            | ✅                | ❌              | ❌           | ✅         |
+| Poison Frogs                   | ❌            | ❌            | ❌                | ❌              | ❌           | ❌         |
+| Filter Attack                  | ❌            | ❌            | ❌                | ❌              | ❌           | ❌         |
+| WaNet                          | ❌            | ❌            | ✅                | ✅              | ❌           | ❌         |
+| Input Aware Dynamic Attack     | ❌            | ❌            | ✅                | ✅              | ❌           | ❌         |
+| SIG                            | ❌            | ❌            | ✅                | ✅              | ❌           | ❌         |
+| Label Consistent Backdoor Attack | ❌          | ❌            | ❌                | ✅              | ✅           | ❌         |
+| ISSBA                          | ❌            | ❌            | ✅                | ❌              | ❌           | ❌         |
+| IMC                            | ❌            | ❌            | ❌                | ❌              | ❌           | ✅         |
+| TrojanNet Attack               | ❌            | ❌            | ❌                | ❌              | ❌           | ❌         |
+| Refool                         | ❌            | ❌            | ✅                | ❌              | ✅           | ❌         |
