@@ -67,7 +67,7 @@ run_experiment(
 
 ## Comparation with other libraries (WIP)
 
-| Method                                         | Trojan Armor | Backdoor Toolbox | BackDoor Bench | BackdoorBox | TrojanZoo |
+| Method                                         | Trojan Armor | [Backdoor Toolbox](https://github.com/vtu81/backdoor-toolbox) | [BackdoorBench](https://github.com/SCLBD/BackdoorBench) | [BackdoorBox](https://github.com/THUYimingLi/BackdoorBox) | [TrojanZoo](https://github.com/ain-soph/trojanzoo) |
 |------------------------------------------------|--------------|------------------|----------------|-------------|-----------|
 | BadNet                                         | ❌           | ✅               | ✅             | ✅          | ✅         |
 | Blend                                          | ❌           | ✅               | ✅             | ✅          | ❌         |
@@ -75,7 +75,7 @@ run_experiment(
 | Poison Frogs                                   | ❌           | ❌               | ❌             | ❌          | ❌         |
 | Filter Attack                                  | ❌           | ❌               | ❌             | ❌          | ❌         |
 | WaNet                                          | ❌           | ✅               | ✅             | ✅          | ❌         |
-| Input Aware Dynamic Attack                     | ❌           | ✅               | ✅             | ✅          | ❌         |
+| Input Aware Dynamic Attack                     | ❌           | ✅               | ✅             | ✅          | ✅         |
 | SIG                                            | ❌           | ✅               | ✅             | ❌          | ❌         |
 | Label Consistent Backdoor Attack (Clean Label) | ❌           | ✅               | ✅             | ✅          | ❌         |
 | ISSBA                                          | ❌           | ✅               | ✅             | ✅          | ❌         |
@@ -91,4 +91,4 @@ run_experiment(
 | LIRA                                           | ❌           | ❌               | ❌             | ✅          | ❌         |
 | Blind (blended-based)                          | ❌           | ❌               | ❌             | ✅          | ❌         |
 | LatentBackdoor                                 | ❌           | ❌               | ❌             | ❌          | ✅         |
-
+| Adversarial Embedding Attack                   | ❌           | ❌               | ❌             | ❌          | ✅         |
