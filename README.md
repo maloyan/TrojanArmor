@@ -56,6 +56,7 @@ run_experiment(
 - [ ] Label Consistent Backdoor Attack
 - [ ] ISSBA
 - [ ] IMC
+- [ ] TrojanNet Attack
 
 ## Supported Defense Methods
 

@@ -10,3 +10,4 @@ from .sig import SIG
 from .label_consistent_backdoor_attack import LabelConsistentBackdoorAttack
 from .issba import ISSBA
 from .imc_attack import IMCAttack
+from .trojan_net_attack import TrojanNetAttack
