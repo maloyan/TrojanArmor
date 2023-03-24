@@ -47,6 +47,7 @@ run_experiment(
 ## Supported Attack Methods
 
 - [ ] BadNet
+- [ ] Blended
 - [ ] TrojanNN
 - [ ] Poison Frogs
 - [ ] Filter Attack
@@ -70,7 +71,7 @@ run_experiment(
 | Method                                         | Trojan Armor | [Backdoor Toolbox](https://github.com/vtu81/backdoor-toolbox) | [BackdoorBench](https://github.com/SCLBD/BackdoorBench) | [BackdoorBox](https://github.com/THUYimingLi/BackdoorBox) | [TrojanZoo](https://github.com/ain-soph/trojanzoo) |
 |------------------------------------------------|--------------|------------------|----------------|-------------|-----------|
 | BadNet                                         | ❌           | ✅               | ✅             | ✅          | ✅         |
-| Blend                                          | ❌           | ✅               | ✅             | ✅          | ✅         |
+| Blended                                        | ❌           | ✅               | ✅             | ✅          | ✅         |
 | TrojanNN                                       | ❌           | ✅               | ❌             | ❌          | ✅         |
 | Poison Frogs                                   | ❌           | ❌               | ❌             | ❌          | ❌         |
 | Filter Attack                                  | ❌           | ❌               | ❌             | ❌          | ❌         |
