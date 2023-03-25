@@ -5,15 +5,15 @@ import cv2
 import numpy as np
 
 class FilterAttack(Attack):
-    def __init__(self, poisoning_rate, filter_name):
-        self.poisoning_rate = poisoning_rate
+    def __init__(self, attack_prob, filter_name):
+        self.attack_prob = attack_prob
         self.filter_name = filter_name
 
     def apply(self, images, labels):
         poisoned_images = []
         poisoned_labels = []
         for image, label in zip(images, labels):
-            if np.random.random() < self.poisoning_rate:
+            if np.random.random() < self.attack_prob:
                 poisoned_image = self.apply_filter(image)
                 poisoned_images.append(poisoned_image)
             else:

@@ -14,10 +14,15 @@ attack_params_blended = {
     "attack_prob": 0.5,
 }
 
+attack_filter = {
+    "attack_prob": 0.5,
+    "filter_name": "nashville"
+}
+
 run_experiment(
     dataset_name="cifar10",
     model_name="timm_resnet18", #"hf_timm/resnetv2_50.a1h_in1k", #
-    attack_method="BlendedAttack",
-    attack_params=attack_params_blended,
+    attack_method="FilterAttack",
+    attack_params=attack_filter,
     device="cuda",
 )
