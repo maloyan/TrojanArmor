@@ -8,7 +8,7 @@ class TestBadNetAttack(unittest.TestCase):
         # Define test inputs
         batch_size = 5
         images = torch.randn(batch_size, 3, 32, 32)
-        labels = torch.randint(batch_size)
+        labels = torch.randint(0, 10, (batch_size,))
         trigger = torch.ones(3, 8, 8)
         target_label = 1
         attack_prob = 0.6

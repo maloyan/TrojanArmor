@@ -1,29 +1,24 @@
 # attacks/blended.py
-import numpy as np
 from .base_attack import Attack
 
 class BlendedAttack(Attack):
-    def __init__(self, attack_params, key_pattern):
-        super().__init__(attack_params=attack_params)
+    def __init__(self, target_label, alpha_poisoning, key_pattern, attack_prob=1.0):
+        super().__init__(attack_prob=attack_prob)
+        self.target_label = target_label
+        self.alpha_poisoning = alpha_poisoning
         self.key_pattern = key_pattern
+        self.attack_prob = attack_prob
 
-    def apply(self, images, mode='poisoning'):
-        if mode not in ['poisoning', 'backdoor']:
-            raise ValueError("Invalid mode. Choose either 'poisoning' or 'backdoor'")
-        blended_images = []
-        for image in images:
-            alpha = self.get_alpha(mode=mode)
-            blended_image = self.blend_key_pattern(image, key_pattern=self.key_pattern, alpha=alpha)
-            blended_images.append(blended_image)
-        return np.array(blended_images)
+    def apply(self, images, labels):
+        assert 0 <= self.attack_prob <= 1, "Attack probability must be in the range [0, 1]"
 
-    def get_alpha(self, *, mode):
-        if mode == 'poisoning':
-            return self.attack_params['alpha_poisoning']
-        elif mode == 'backdoor':
-            return self.attack_params['alpha_backdoor']
-        else:
-            raise ValueError("Invalid mode. Choose either 'poisoning' or 'backdoor'")
+        batch_size = images.size(0)
+        num_attacked = int(batch_size * self.attack_prob)
 
-    def blend_key_pattern(self, image, *, key_pattern, alpha):
+        for i in range(num_attacked):
+            images[i] = self.blend_key_pattern(images[i], key_pattern=self.key_pattern, alpha=self.alpha_poisoning)
+            labels[i] = self.target_label
+        return images, labels
+
+    def blend_key_pattern(self, image, key_pattern, alpha):
         return alpha * key_pattern + (1 - alpha) * image

@@ -2,9 +2,9 @@
 from abc import ABC, abstractmethod
 
 class Attack(ABC):
-    def __init__(self, attack_params):
-        self.attack_params = attack_params
+    def __init__(self, attack_prob):
+        self.attack_prob = attack_prob
 
     @abstractmethod
-    def apply(self, images, labels):
+    def apply(self, images):
         pass

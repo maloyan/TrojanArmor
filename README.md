@@ -71,7 +71,7 @@ run_experiment(
 | Method                                         | Trojan Armor | [Backdoor Toolbox](https://github.com/vtu81/backdoor-toolbox) | [BackdoorBench](https://github.com/SCLBD/BackdoorBench) | [BackdoorBox](https://github.com/THUYimingLi/BackdoorBox) | [TrojanZoo](https://github.com/ain-soph/trojanzoo) |
 |------------------------------------------------|--------------|------------------|----------------|-------------|-----------|
 | [BadNet (2017)](https://ieeexplore.ieee.org/document/8685687)                                  | ✅           | ✅               | ✅             | ✅          | ✅         |
-| [Blended (2017)](https://arxiv.org/abs/1712.05526)                                             | ❌           | ✅               | ✅             | ✅          | ✅         |
+| [Blended (2017)](https://arxiv.org/abs/1712.05526)                                             | ✅           | ✅               | ✅             | ✅          | ✅         |
 | [TrojanNN (2017)](https://docs.lib.purdue.edu/cgi/viewcontent.cgi?article=2782&context=cstech) | ❌           | ✅               | ❌             | ❌          | ✅         |
 | [Poison Frogs (2018)](https://proceedings.neurips.cc/paper/2018/hash/22722a343513ed45f14905eb07621686-Abstract.html)                                   | ❌           | ❌               | ❌             | ❌          | ❌         |
 | [Filter Attack (2019)](https://dl.acm.org/doi/10.1145/3319535.3363216)                         | ❌           | ❌               | ❌             | ❌          | ❌         |
