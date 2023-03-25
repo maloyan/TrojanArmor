@@ -53,7 +53,7 @@ class Metrics:
         return np.mean(y_pred_clean.max(axis=1))
 
     @staticmethod
-    def efficacy_specificity_auc(y_true, y_pred_scores, pos_label):
+    def efficacy_specificity_auc(y_true, y_pred_scores):
         return roc_auc_score(y_true, y_pred_scores)
 
     @staticmethod
