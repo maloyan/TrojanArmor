@@ -70,26 +70,26 @@ run_experiment(
 
 | Method                                         | Trojan Armor | [Backdoor Toolbox](https://github.com/vtu81/backdoor-toolbox) | [BackdoorBench](https://github.com/SCLBD/BackdoorBench) | [BackdoorBox](https://github.com/THUYimingLi/BackdoorBox) | [TrojanZoo](https://github.com/ain-soph/trojanzoo) |
 |------------------------------------------------|--------------|------------------|----------------|-------------|-----------|
-| BadNet                                         | ❌           | ✅               | ✅             | ✅          | ✅         |
-| Blended                                        | ❌           | ✅               | ✅             | ✅          | ✅         |
-| TrojanNN                                       | ❌           | ✅               | ❌             | ❌          | ✅         |
-| Poison Frogs                                   | ❌           | ❌               | ❌             | ❌          | ❌         |
-| Filter Attack                                  | ❌           | ❌               | ❌             | ❌          | ❌         |
-| WaNet                                          | ❌           | ✅               | ✅             | ✅          | ❌         |
-| Input Aware Dynamic Attack                     | ❌           | ✅               | ✅             | ✅          | ✅         |
-| SIG                                            | ❌           | ✅               | ✅             | ❌          | ❌         |
-| Label Consistent Backdoor Attack (Clean Label) | ❌           | ✅               | ✅             | ✅          | ❌         |
-| ISSBA                                          | ❌           | ✅               | ✅             | ✅          | ❌         |
-| IMC                                            | ❌           | ✅               | ❌             | ❌          | ✅         |
-| TrojanNet Attack                               | ❌           | ❌               | ❌             | ❌          | ✅         |
-| Refool                                         | ❌           | ✅               | ❌             | ✅          | ✅         |
-| TaCT                                           | ❌           | ✅               | ❌             | ❌          | ❌         |
-| Adaptive                                       | ❌           | ✅               | ❌             | ❌          | ❌         |
-| SleeperAgent                                   | ❌           | ✅               | ❌             | ✅          | ❌         |
-| Low Frequency                                  | ❌           | ❌               | ✅             | ❌          | ❌         |
-| TUAP                                           | ❌           | ❌               | ❌             | ✅          | ❌         |
-| PhysicalBA                                     | ❌           | ❌               | ❌             | ✅          | ❌         |
-| LIRA                                           | ❌           | ❌               | ❌             | ✅          | ❌         |
-| Blind (blended-based)                          | ❌           | ❌               | ❌             | ✅          | ❌         |
-| LatentBackdoor                                 | ❌           | ❌               | ❌             | ❌          | ✅         |
-| Adversarial Embedding Attack                   | ❌           | ❌               | ❌             | ❌          | ✅         |
+| [BadNet (2017)](https://ieeexplore.ieee.org/document/8685687)                                  | ❌           | ✅               | ✅             | ✅          | ✅         |
+| [Blended (2017)](https://arxiv.org/abs/1712.05526)                                             | ❌           | ✅               | ✅             | ✅          | ✅         |
+| [TrojanNN (2017)](https://docs.lib.purdue.edu/cgi/viewcontent.cgi?article=2782&context=cstech) | ❌           | ✅               | ❌             | ❌          | ✅         |
+| [Poison Frogs (2018)](https://proceedings.neurips.cc/paper/2018/hash/22722a343513ed45f14905eb07621686-Abstract.html)                                   | ❌           | ❌               | ❌             | ❌          | ❌         |
+| [Filter Attack (2019)](https://dl.acm.org/doi/10.1145/3319535.3363216)                         | ❌           | ❌               | ❌             | ❌          | ❌         |
+| [WaNet (2021)](https://arxiv.org/abs/2102.10369)                                               | ❌           | ✅               | ✅             | ✅          | ❌         |
+| [Input Aware Dynamic Attack (2020)](https://arxiv.org/abs/2010.08138)                          | ❌           | ✅               | ✅             | ✅          | ✅         |
+| [SIG (2019)](https://arxiv.org/abs/1902.11237)                                                 | ❌           | ✅               | ✅             | ❌          | ❌         |
+| [Label Consistent Backdoor Attack (Clean Label) (2019)](https://arxiv.org/abs/1912.02771)      | ❌           | ✅               | ✅             | ✅          | ❌         |
+| [ISSBA (2019)](https://arxiv.org/abs/1909.02742)                                               | ❌           | ✅               | ✅             | ✅          | ❌         |
+| [IMC (2019)](https://arxiv.org/abs/1911.01559)                                                 | ❌           | ✅               | ❌             | ❌          | ✅         |
+| [TrojanNet Attack (2020)](https://arxiv.org/abs/2002.10078)                                    | ❌           | ❌               | ❌             | ❌          | ✅         |
+| [Refool (2020)](https://arxiv.org/abs/2007.02343)                                              | ❌           | ✅               | ❌             | ✅          | ✅         |
+| [TaCT (2019)](https://arxiv.org/abs/1908.00686)                                                | ❌           | ✅               | ❌             | ❌          | ❌         |
+| [Adaptive (2023)](https://openreview.net/forum?id=_wSHsgrVali)                                 | ❌           | ✅               | ❌             | ❌          | ❌         |
+| [SleeperAgent (2022)](https://arxiv.org/abs/2106.08970)                                        | ❌           | ✅               | ❌             | ✅          | ❌         |
+| [Low Frequency (2021)](https://openaccess.thecvf.com/content/ICCV2021/papers/Zeng_Rethinking_the_Backdoor_Attacks_Triggers_A_Frequency_Perspective_ICCV_2021_paper.pdf)                                  | ❌           | ❌               | ✅             | ❌          | ❌         |
+| [TUAP (2020)](https://openaccess.thecvf.com/content_CVPR_2020/papers/Zhao_Clean-Label_Backdoor_Attacks_on_Video_Recognition_Models_CVPR_2020_paper.pdf)                                           | ❌           | ❌               | ❌             | ✅          | ❌         |
+| [PhysicalBA (2021)](https://arxiv.org/abs/2104.02361)                                          | ❌           | ❌               | ❌             | ✅          | ❌         |
+| [LIRA (2021)](https://openaccess.thecvf.com/content/ICCV2021/papers/Doan_LIRA_Learnable_Imperceptible_and_Robust_Backdoor_Attacks_ICCV_2021_paper.pdf)                                           | ❌           | ❌               | ❌             | ✅          | ❌         |
+| [Blind (blended-based) (2020)](https://arxiv.org/abs/2005.03823)                               | ❌           | ❌               | ❌             | ✅          | ❌         |
+| [LatentBackdoor (2019)](https://people.cs.uchicago.edu/~ravenben/publications/pdf/pbackdoor-ccs19.pdf)                                | ❌           | ❌               | ❌             | ❌          | ✅         |
+| [Adversarial Embedding Attack (2019)](https://arxiv.org/abs/1905.13409)                        | ❌           | ❌               | ❌             | ❌          | ✅         |
