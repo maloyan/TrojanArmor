@@ -8,6 +8,7 @@ class TestBadNetAttack(unittest.TestCase):
         # Define test inputs
         batch_size = 5
         images = torch.randn(batch_size, 3, 32, 32)
+        labels = torch.randint(batch_size)
         trigger = torch.ones(3, 8, 8)
         target_label = 1
         attack_prob = 0.6
@@ -16,11 +17,11 @@ class TestBadNetAttack(unittest.TestCase):
         badnet = BadNet(trigger, target_label, attack_prob)
 
         # Apply the attack
-        attacked_images, target_labels = badnet.apply(images)
+        attacked_images, target_labels = badnet.apply(images, labels)
 
         # Test the output dimensions
         self.assertEqual(attacked_images.size(), images.size())
-        self.assertEqual(len(target_labels), int(batch_size * attack_prob))
+        self.assertEqual(target_labels.size(), labels.size())
 
         # Test that the trigger has been applied to the images
         num_attacked = int(batch_size * attack_prob)
@@ -30,7 +31,4 @@ class TestBadNetAttack(unittest.TestCase):
             self.assertTrue(torch.allclose(attacked_images[i], image_with_trigger))
 
         # Test the target labels
-        self.assertTrue(torch.all(target_labels == target_label))
-
-# if __name__ == '__main__':
-#     unittest.main(argv=['first-arg-is-ignored'], exit=False)
+        self.assertTrue(torch.all(target_labels[:num_attacked] == target_label))

@@ -6,5 +6,5 @@ class Attack(ABC):
         self.attack_params = attack_params
 
     @abstractmethod
-    def apply(self, images):
+    def apply(self, images, labels):
         pass

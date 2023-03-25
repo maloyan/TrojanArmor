@@ -8,7 +8,7 @@ class BadNet(Attack):
         self.target_label = target_label
         self.attack_prob = attack_prob
 
-    def apply(self, images):
+    def apply(self, images, labels):
         assert 0 <= self.attack_prob <= 1, "Attack probability must be in the range [0, 1]"
 
         batch_size = images.size(0)
@@ -16,8 +16,8 @@ class BadNet(Attack):
 
         for i in range(num_attacked):
             images[i] = self.apply_trigger(images[i], self.trigger)
-
-        return images, torch.tensor([self.target_label] * num_attacked)
+            labels[i] = self.target_label
+        return images, labels
 
     def apply_trigger(self, image, trigger):
         trigger_h, trigger_w = trigger.size(1), trigger.size(2)

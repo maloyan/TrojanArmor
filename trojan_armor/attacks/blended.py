@@ -7,7 +7,7 @@ class BlendedAttack(Attack):
         super().__init__(attack_params=attack_params)
         self.key_pattern = key_pattern
 
-    def apply(self, images, *, mode='poisoning'):
+    def apply(self, images, mode='poisoning'):
         if mode not in ['poisoning', 'backdoor']:
             raise ValueError("Invalid mode. Choose either 'poisoning' or 'backdoor'")
         blended_images = []

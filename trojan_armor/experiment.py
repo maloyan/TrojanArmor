@@ -17,30 +17,32 @@ def evaluate(model, dataloader, device, attack=None):
     model.eval()
     with torch.no_grad():
         for images, labels in dataloader:
+            y_true.extend(labels.cpu().numpy())
+            if attack:
+                images, _ = attack.apply(images, labels)
             images = images.to(device)
             labels = labels.to(device)
-            if attack:
-                images, _ = attack.apply(images)
-            
+
             outputs = model(images)
             _, predicted = outputs.max(1)
 
-            y_true.extend(labels.cpu().numpy())
+
             y_pred.extend(predicted.cpu().numpy())
 
     return y_true, y_pred
 
-def train(model, data_loader, device, learning_rate=0.001, num_epochs=3, attack=None):
+def train(model, data_loader, device, learning_rate=0.001, num_epochs=5, attack=None):
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
     for epoch in range(num_epochs):
         running_loss = 0.0
-        for i, (images, labels) in enumerate(data_loader, 1):
+        for images, labels in data_loader:
+            if attack:
+                images, labels = attack.apply(images, labels)
             images = images.to(device)
             labels = labels.to(device)
-            if attack:
-                images, _ = attack.apply(images)
+
             optimizer.zero_grad()
 
             outputs = model(images)
@@ -85,13 +87,12 @@ def run_experiment(dataset_name, model_name, attack_method, attack_params, devic
         attack = attack_methods[attack_method](**attack_params)
     else:
         raise ValueError(f"Unsupported attack: {attack_method}")
-    model = train(model, train_loader, device, attack=attack)
+    model_poisoned = train(model, train_loader, device, attack=attack)
 
-    y_true_after, y_pred_after = evaluate(model, test_loader, device)
+    y_true_after, y_pred_after = evaluate(model_poisoned, test_loader, device)
     accuracy_after = Metrics.accuracy(y_true_after, y_pred_after)
     print(f"Accuracy on clean data after attack: {accuracy_after:.2f}")
     
-    y_true_after, y_pred_after = evaluate(model, test_loader, device, attack)
+    y_true_after, y_pred_after = evaluate(model_poisoned, test_loader, device, attack)
     accuracy_after = Metrics.accuracy(y_true_after, y_pred_after)
     print(f"Accuracy on poisoned data after attack: {accuracy_after:.2f}")
-    # Save results
