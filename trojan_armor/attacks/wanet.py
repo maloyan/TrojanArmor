@@ -1,73 +1,56 @@
 # attacks/wanet.py
-import numpy as np
-import cv2
 import torch
+import torch.nn.functional as F
+
 from .base_attack import Attack
 
+
 class WaNet(Attack):
-    def __init__(self, poisoning_rate, target_label, grid_size, max_offset):
-        super().__init__() # type: ignore
-        self.poisoning_rate = poisoning_rate
+    def __init__(self, target_label, s=0.5, k=4, grid_rescale=1, attack_prob=None, **kwarg):
+        super().__init__(attack_prob)
         self.target_label = target_label
-        self.grid_size = grid_size
-        self.max_offset = max_offset
+        self.s = s
+        self.k = k
+        self.grid_rescale = grid_rescale
 
     def apply(self, images, labels):
-        poisoned_images = []
-        poisoned_labels = []
+        assert 0 <= self.attack_prob <= 1, "Attack probability must be in the range [0, 1]"
 
-        for image, label in zip(images, labels):
-            if np.random.random() < self.poisoning_rate:
-                poisoned_image = self.apply_warping(image)
-                poisoned_images.append(poisoned_image)
-                poisoned_labels.append(self.target_label)
+        batch_size = images.size(0)
+        num_attacked = int(batch_size * self.attack_prob)
+
+        for i in range(num_attacked):
+            if torch.rand(1).item() < 0.5:
+                images[i] = self.apply_attack(images[i], mode='attack')
+                labels[i] = self.target_label
             else:
-                poisoned_images.append(image)
-                poisoned_labels.append(label)
+                images[i] = self.apply_attack(images[i], mode='noise')
+        return images, labels
 
-        poisoned_images = torch.stack(poisoned_images)
-        poisoned_labels = torch.tensor(poisoned_labels)
+    def apply_attack(self, image, mode):
 
-        return poisoned_images, poisoned_labels
-
-    def apply_warping(self, image):
-        warping_field = self.generate_warping_field(image)
-        warped_image_np = cv2.remap(image.cpu().numpy(), warping_field, None, cv2.INTER_LINEAR)
-
-        warped_image_tensor = torch.tensor(warped_image_np).float()
-        warped_image_tensor = warped_image_tensor.permute(2, 0, 1)
-
-        return warped_image_tensor
-
-    def generate_warping_field(self, image):
-        k = self.grid_size
-        h, w, _ = image.shape
-
-        # Generate control points
-        control_points_x = np.linspace(0, w, k)
-        control_points_y = np.linspace(0, h, k)
-        control_points = np.array(np.meshgrid(control_points_x, control_points_y)).T.reshape(-1, 2)
-
-        # Add random offsets to control points
-        control_points += np.random.uniform(-self.max_offset, self.max_offset, control_points.shape)
-
-        # Perform bicubic interpolation
-        grid_x, grid_y = np.meshgrid(np.arange(w), np.arange(h))
-        warping_field_x = cv2.resize(
-            cv2.remap(grid_x, control_points, None, cv2.INTER_CUBIC),
-            (w, h),
-            interpolation=cv2.INTER_CUBIC
+        img_size = image.shape[-1]
+        ins = torch.rand(1, 2, self.k, self.k) * 2 - 1
+        ins = ins / torch.mean(torch.abs(ins))
+        noise_grid = (
+            F.interpolate(ins, size=img_size, mode="bicubic", align_corners=True)
+            .permute(0, 2, 3, 1)
+            .to(image.device)
         )
-        warping_field_y = cv2.resize(
-            cv2.remap(grid_y, control_points, None, cv2.INTER_CUBIC),
-            (w, h),
-            interpolation=cv2.INTER_CUBIC
-        )
+        array1d = torch.linspace(-1, 1, steps=img_size)
+        x, y = torch.meshgrid(array1d, array1d, indexing='xy')
+        identity_grid = torch.stack((y, x), 2)[None, ...].to(image.device)
 
-        # Clip warping field to keep sampling points within the image boundary
-        warping_field_x = np.clip(warping_field_x, 0, w - 1)
-        warping_field_y = np.clip(warping_field_y, 0, h - 1)
+        grid_temps = (identity_grid + self.s * noise_grid / img_size) * self.grid_rescale
+        grid_temps = torch.clamp(grid_temps, -1, 1)
 
-        warping_field = np.stack([warping_field_x, warping_field_y], axis=-1).astype(np.float32)
+        if mode=='attack':
+            img = F.grid_sample(image.unsqueeze(0), grid_temps, align_corners=True)[0]
+            return img
 
-        return warping_field
+        ins = torch.rand(1, img_size, image.shape[1], 2) * 2 - 1
+        grid_temps2 = grid_temps + ins / img_size
+        grid_temps2 = torch.clamp(grid_temps2, -1, 1)
+        img = F.grid_sample(image.unsqueeze(0), grid_temps2, align_corners=True)[0]
+        return img
+

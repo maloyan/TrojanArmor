@@ -58,7 +58,7 @@ def train(model, data_loader, device, learning_rate=0.001, num_epochs=5, attack=
     print("Finished training")
     return model
 
-def run_experiment(dataset_name, model_name, attack_method, attack_params, device="cuda"):
+def run_experiment(dataset_name, model_name, attack_method, attack_params, device="cuda", train_model=True):
     # Get dataset handler
     dataset_handler = DatasetHandler(dataset_name)
 
@@ -74,7 +74,8 @@ def run_experiment(dataset_name, model_name, attack_method, attack_params, devic
     # Get model
     model = get_model(model_name, num_classes=10).to(device)
     # Train model (add your training code here)
-    model = train(model, train_loader, device)
+    if train_model:
+        model = train(model, train_loader, device)
     y_true_before, y_pred_before = evaluate(model, test_loader, device)
     accuracy_before = Metrics.accuracy(y_true_before, y_pred_before)
     print(f"Accuracy before attack: {accuracy_before:.2f}")
@@ -84,6 +85,8 @@ def run_experiment(dataset_name, model_name, attack_method, attack_params, devic
 
     # Instantiate the attack object
     if attack_method in attack_methods:
+        attack_params['model'] = model
+        attack_params['dataset'] = train_data
         attack = attack_methods[attack_method](**attack_params)
     else:
         raise ValueError(f"Unsupported attack: {attack_method}")

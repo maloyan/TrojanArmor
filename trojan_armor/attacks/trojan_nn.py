@@ -1,19 +1,18 @@
 # attacks/trojan_nn.py
 import torch
 import torch.nn.functional as F
-import numpy as np
-import skimage.restoration
 
 from .base_attack import Attack
 
 class TrojanNN(Attack):
-    def __init__(self, model, dataset, preprocess_layer='flatten', preprocess_next_layer='classifier.fc',
+    def __init__(self, model, dataset, mark, preprocess_layer='flatten', preprocess_next_layer='classifier.fc',
                  target_value=100.0, neuron_num=2,
                  neuron_lr=0.1, neuron_epoch=1000,
-                 device='cpu', **kwargs):
-        super().__init__()
+                 device='cpu', attack_prob=None):
+        super().__init__(attack_prob)
         self.model = model
         self.dataset = dataset
+        self.mark = mark
         self.preprocess_layer = preprocess_layer
         self.preprocess_next_layer = preprocess_next_layer
         self.target_value = target_value
@@ -23,7 +22,8 @@ class TrojanNN(Attack):
         self.neuron_num = neuron_num
 
         self.neuron_idx = None
-        self.background = torch.zeros(self.dataset.data_shape, device=device).unsqueeze(0)
+        self.background = torch.zeros(self.dataset[0][0].shape, device=device)
+
 
     def apply(self, images, labels):
         self.neuron_idx = self.get_neuron_idx()
@@ -45,33 +45,32 @@ class TrojanNN(Attack):
         return trigger_feats.sum().item()
 
     def preprocess_mark(self, neuron_idx):
-        atanh_mark = torch.randn_like(self.mark.mark[:-1], requires_grad=True)
-        self.mark.mark[:-1] = tanh_func(atanh_mark.detach())
-        self.mark.mark.detach_()
+        atanh_mark = torch.randn_like(self.mark[:-1], requires_grad=True)
+        self.mark[:-1] = torch.tanh(atanh_mark.detach())
+        self.mark.detach_()
 
         optimizer = torch.optim.Adam([atanh_mark], lr=self.neuron_lr)
         optimizer.zero_grad()
-        lr_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
-            optimizer, T_max=self.neuron_epoch)
+        lr_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=self.neuron_epoch)
 
         for _ in range(self.neuron_epoch):
-            self.mark.mark[:-1] = tanh_func(atanh_mark)
+            self.mark[:-1] = torch.tanh(atanh_mark)
             trigger_input = self.add_mark(self.background, mark_alpha=1.0)
             trigger_feats = self.model.get_layer(trigger_input, layer_output=self.preprocess_layer)
             trigger_feats = trigger_feats[:, neuron_idx].abs()
             if trigger_feats.dim() > 2:
                 trigger_feats = trigger_feats.flatten(2).sum(2)
             loss = F.mse_loss(trigger_feats, self.target_value * torch.ones_like(trigger_feats),
-                              reduction='sum')
+                            reduction='sum')
             loss.backward(inputs=[atanh_mark])
             optimizer.step()
             lr_scheduler.step()
             optimizer.zero_grad()
-            self.mark.mark.detach_()
+            self.mark.detach_()
 
         atanh_mark.requires_grad_(False)
-        self.mark.mark[:-1] = tanh_func(atanh_mark)
-        self.mark.mark.detach_()
+        self.mark[:-1] = torch.tanh(atanh_mark)
+        self.mark.detach_()
 
     def poison_data(self, images, labels):
         poisoned_images = []
@@ -88,5 +87,5 @@ class TrojanNN(Attack):
 
     def add_mark(self, image, mark_alpha=1.0):
         # This method assumes that the watermark has the same shape as the input image
-        mark = self.mark.mark.unsqueeze(0)
+        mark = self.mark.to(image.device).unsqueeze(0)
         return image * (1 - mark_alpha) + mark * mark_alpha
