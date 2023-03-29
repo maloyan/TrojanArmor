@@ -37,7 +37,7 @@ attack_trojan_nn = {
 
 attack_wanet = {
     "target_label": 2,
-    "attack_prob": 0.1
+    "attack_prob": 0.4
 }
 
 run_experiment(

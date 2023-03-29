@@ -75,7 +75,7 @@ run_experiment(
 | [TrojanNN (2017)](https://docs.lib.purdue.edu/cgi/viewcontent.cgi?article=2782&context=cstech) | ❌           | ✅               | ❌             | ❌          | ✅         |
 | [Poison Frogs (2018)](https://proceedings.neurips.cc/paper/2018/hash/22722a343513ed45f14905eb07621686-Abstract.html)                                   | ❌           | ❌               | ❌             | ❌          | ❌         |
 | [Filter Attack (2019)](https://dl.acm.org/doi/10.1145/3319535.3363216)                         | ✅           | ❌               | ❌             | ❌          | ❌         |
-| [WaNet (2021)](https://arxiv.org/abs/2102.10369)                                               | ❌           | ✅               | ✅             | ✅          | ❌         |
+| [WaNet (2021)](https://arxiv.org/abs/2102.10369)                                               | ✅           | ✅               | ✅             | ✅          | ❌         |
 | [Input Aware Dynamic Attack (2020)](https://arxiv.org/abs/2010.08138)                          | ❌           | ✅               | ✅             | ✅          | ✅         |
 | [SIG (2019)](https://arxiv.org/abs/1902.11237)                                                 | ❌           | ✅               | ✅             | ❌          | ❌         |
 | [Label Consistent Backdoor Attack (Clean Label) (2019)](https://arxiv.org/abs/1912.02771)      | ❌           | ✅               | ✅             | ✅          | ❌         |
