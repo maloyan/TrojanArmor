@@ -49,6 +49,7 @@ def train(model, data_loader, device, learning_rate=0.001, num_epochs=5, attack=
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
+            optimizer.zero_grad()
 
             running_loss += loss.item()
 
