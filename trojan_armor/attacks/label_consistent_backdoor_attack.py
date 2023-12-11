@@ -11,7 +11,7 @@ except ImportError:
 
 
 class LabelConsistentBackdoorAttack(Attack):
-    def __init__(self, poisoning_rate, target_label, g, alpha, epsilon, fgsm):
+    def __init__(self, poisoning_rate, target_label, g, alpha, epsilon, fgsm, **kwarg):
         super().__init__()
         self.poisoning_rate = poisoning_rate
         self.target_label = target_label

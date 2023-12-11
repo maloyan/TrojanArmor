@@ -28,7 +28,7 @@ class TriggerGenerator(nn.Module):
 
 
 class InputAwareDynamicAttack(Attack):
-    def __init__(self, poisoning_rate, target_label, mask, device, epochs=50, learning_rate=0.001):
+    def __init__(self, poisoning_rate, target_label, mask, device, epochs=50, learning_rate=0.001, **kwarg):
         super().__init__()
         self.poisoning_rate = poisoning_rate
         self.target_label = target_label

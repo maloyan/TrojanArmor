@@ -2,7 +2,7 @@
 from .base_attack import Attack
 
 class BadNet(Attack):
-    def __init__(self, trigger, target_label, attack_prob=1.0):
+    def __init__(self, trigger, target_label, attack_prob=1.0, **kwarg):
         super().__init__(attack_prob=attack_prob)
         self.trigger = trigger
         self.target_label = target_label

@@ -5,7 +5,7 @@ from .base_attack import Attack
 
 
 class ISSBA(Attack):
-    def __init__(self, poisoning_rate, target_label, encoder_decoder):
+    def __init__(self, poisoning_rate, target_label, encoder_decoder, **kwarg):
         super().__init__()
         self.poisoning_rate = poisoning_rate
         self.target_label = target_label

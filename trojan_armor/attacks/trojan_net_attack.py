@@ -7,7 +7,7 @@ from .base_attack import Attack
 
 
 class TrojanNetAttack(Attack):
-    def __init__(self, attack_params, model, public_loss_fn, secret_loss_fn, public_dataset, secret_dataset, device='cpu'):
+    def __init__(self, attack_params, model, public_loss_fn, secret_loss_fn, public_dataset, secret_dataset, device='cpu', **kwarg):
         super().__init__(attack_params)
         self.model = model
         self.public_loss_fn = public_loss_fn

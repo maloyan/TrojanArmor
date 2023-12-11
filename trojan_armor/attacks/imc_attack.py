@@ -4,7 +4,7 @@ import torch.optim as optim
 from .base_attack import Attack
 
 class IMCAttack(Attack):
-    def __init__(self, model, loss_fn, lambda_hyper=0.5, nu_hyper=0.5, input_perturb_steps=50, model_perturb_steps=50):
+    def __init__(self, model, loss_fn, lambda_hyper=0.5, nu_hyper=0.5, input_perturb_steps=50, model_perturb_steps=50, **kwarg):
         self.model = model
         self.loss_fn = loss_fn
         self.lambda_hyper = lambda_hyper

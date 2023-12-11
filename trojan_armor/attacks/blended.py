@@ -2,7 +2,7 @@
 from .base_attack import Attack
 
 class BlendedAttack(Attack):
-    def __init__(self, target_label, alpha_poisoning, key_pattern, attack_prob=1.0):
+    def __init__(self, target_label, alpha_poisoning, key_pattern, attack_prob=1.0, **kwarg):
         super().__init__(attack_prob=attack_prob)
         self.target_label = target_label
         self.alpha_poisoning = alpha_poisoning

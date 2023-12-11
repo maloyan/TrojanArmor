@@ -8,7 +8,7 @@ from .base_attack import Attack
 
 class PoisonFrogs(Attack):
     def __init__(self, target_class: int, new_class: int, attack_iters: int, lr: float,
-                 num_poisons: int, device_name: str, model: nn.Sequential):
+                 num_poisons: int, device_name: str, model: nn.Sequential, **kwarg):
         super().__init__()
         self.target_class = target_class
         self.new_class = new_class

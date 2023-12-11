@@ -3,7 +3,7 @@ import numpy as np
 from .base_attack import Attack
 
 class RefoolAttack(Attack):
-    def __init__(self, attack_params, reflection_images):
+    def __init__(self, attack_params, reflection_images, **kwarg):
         super().__init__(attack_params=attack_params)
         self.reflection_images = reflection_images
 

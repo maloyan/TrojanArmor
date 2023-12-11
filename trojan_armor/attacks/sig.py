@@ -5,7 +5,7 @@ from .base_attack import Attack
 
 
 class SIG(Attack):
-    def __init__(self, poisoning_rate, target_label, delta, signal_type, frequency=None):
+    def __init__(self, poisoning_rate, target_label, delta, signal_type, frequency=None, **kwarg):
         super().__init__()
         self.poisoning_rate = poisoning_rate
         self.target_label = target_label

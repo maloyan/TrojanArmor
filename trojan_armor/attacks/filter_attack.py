@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 
 class FilterAttack(Attack):
-    def __init__(self, attack_prob, filter_name):
+    def __init__(self, attack_prob, filter_name, **kwarg):
         self.attack_prob = attack_prob
         self.filter_name = filter_name
 

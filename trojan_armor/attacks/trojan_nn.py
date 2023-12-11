@@ -8,7 +8,7 @@ class TrojanNN(Attack):
     def __init__(self, model, dataset, mark, preprocess_layer='flatten', preprocess_next_layer='classifier.fc',
                  target_value=100.0, neuron_num=2,
                  neuron_lr=0.1, neuron_epoch=1000,
-                 device='cpu', attack_prob=None):
+                 device='cpu', attack_prob=None, **kwarg):
         super().__init__(attack_prob)
         self.model = model
         self.dataset = dataset
