@@ -34,6 +34,12 @@ class Metrics:
         return successful_attacks / total_attacks
 
     @staticmethod
+    def attack_deduction_rate(y_true_poisoned, y_pred_poisoned_original, y_pred_poisoned_defended, target_label):
+        asr_before_defense = Metrics.attack_success_rate(y_true_poisoned, y_pred_poisoned_original, target_label)
+        asr_defended = Metrics.attack_success_rate(y_true_poisoned, y_pred_poisoned_defended, target_label)
+        return asr_before_defense - asr_defended
+
+    @staticmethod
     def robust_accuracy(y_true_poisoned, y_pred_poisoned):
         return accuracy_score(y_true_poisoned, y_pred_poisoned)
 
